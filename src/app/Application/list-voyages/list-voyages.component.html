@@ -1,0 +1,15 @@
+
+<!-- Rechercher-->
+<input type="checkbox" name="c">Date
+
+<input type="checkbox" name="c">Pays
+<input type="text" name="p" >
+<!--Liste voyages-->
+<span *ngFor="let v of ListeVoyages">
+    {{v.id}} {{v.lib}} 
+    <button (click)="ajouter(v.id)">Favoris</button>
+    <button [routerLink]="['/listeVoyages',v.id]">Details</button>
+</span>
+<span *ngFor="let f of ListeFavoris"> 
+    {{f.id}} {{f.lib}} 
+</span>

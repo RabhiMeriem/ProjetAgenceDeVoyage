@@ -1,0 +1,12 @@
+.promo {
+    animation-name: myAnimation;
+    animation-duration:2s;
+    animation-iteration-count:infinite;
+    border-radius: 25px;
+    padding:3%;
+    margin:3%;
+}
+@keyframes myAnimation {
+    0%{background-color: white;color: orangered;}
+    100%{background-color:orangered;color:white;}
+}

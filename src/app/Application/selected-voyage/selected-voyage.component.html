@@ -1,0 +1,13 @@
+
+<div class="card text-center "style="width:400px" >
+    <div class="card-header">{{Voyage.lib}}</div>
+    <div class="card-body">
+        <span *ngIf="Voyage.promo!=0" class="promo">En promotion de {{Voyage.promo}}%</span>
+        prix {{promo()}}
+        <br> 
+        {{Voyage.detail}}
+        <br>
+        Date de départ : {{Voyage.date_dep|date : 'dd/MM/YYYY'}} <br>Date d'arrivée :{{Voyage.date_arr|date : 'dd/MM/YYYY'}} 
+        </div>
+    <div class="card-footer">  <button (click)="onListe()">retour</button></div>
+  </div>
