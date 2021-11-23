@@ -1,9 +1,13 @@
 
 <!-- Rechercher-->
-<input type="checkbox" name="c">Date
-
-<input type="checkbox" name="c">Pays
-<input type="text" name="p" >
+<form [formGroup]="voyageForm" (ngSubmit)="onSubmit()">
+<!--<input type="checkbox" formControlName="datec">Date
+<input type="date" formControlName="datedep" [hidden]="!datec()">
+<input type="date" formControlName="datedarr"[hidden]="!datec()">-->
+<mat-slide-toggle color="accent" formControlName="paysc">Pays</mat-slide-toggle>
+<input type="text" name="p" formControlName="lib" [hidden]="!paysc()">
+<input type="submit" value="Rechercher">
+</form>
 <!--Liste voyages-->
 <span *ngFor="let v of ListeVoyages">
     {{v.id}} {{v.lib}} 
