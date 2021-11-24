@@ -1,19 +1,88 @@
-
 <!-- Rechercher-->
 <form [formGroup]="voyageForm" (ngSubmit)="onSubmit()">
-<!--<input type="checkbox" formControlName="datec">Date
-<input type="date" formControlName="datedep" [hidden]="!datec()">
-<input type="date" formControlName="datedarr"[hidden]="!datec()">-->
-<mat-slide-toggle color="accent" formControlName="paysc">Pays</mat-slide-toggle>
-<input type="text" name="p" formControlName="lib" [hidden]="!paysc()">
-<input type="submit" value="Rechercher">
+    <mat-slide-toggle color="accent" formControlName="datec">Date</mat-slide-toggle>
+    <input type="date" formControlName="datedep" [hidden]="!datec()">
+    <input type="date" formControlName="datedarr" [hidden]="!datec()">
+    <mat-slide-toggle color="accent" formControlName="paysc">pays</mat-slide-toggle>
+    <input type="text" name="p" formControlName="pays" [hidden]="!paysc()">
+    <input type="submit" value="Rechercher">
 </form>
 <!--Liste voyages-->
 <span *ngFor="let v of ListeVoyages">
-    {{v.id}} {{v.lib}} 
-    <button (click)="ajouter(v.id)">Favoris</button>
+    {{v.id}} {{v.lib}}
     <button [routerLink]="['/listeVoyages',v.id]">Details</button>
 </span>
-<span *ngFor="let f of ListeFavoris"> 
-    {{f.id}} {{f.lib}} 
-</span>
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer mode="push">
+        <mat-stepper orientation="vertical" linear="true" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Votre nom</ng-template>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nom</mat-label>
+                        <input matInput placeholder="Donnez votre nom et prénom" formControlName="firstCtrl">
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Adresse E-mail</ng-template>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Addresse</mat-label>
+                        <input matInput formControlName="secondCtrl" placeholder="Foulen@gmail.com">
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="thirdFormGroup">
+                <form [formGroup]="thirdFormGroup">
+                    <ng-template matStepLabel>Type de problèmes ou Renseignements</ng-template>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Problème ou Renseignement</mat-label>
+                        <mat-select>
+                            <mat-option>
+
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="fourthFormGroup">
+                <form [formGroup]="fourthFormGroup">
+                    <ng-template matStepLabel>Commentaire</ng-template>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Votre commentaire</mat-label>
+                        <textarea matInput formControlName="fourthCtrl"></textarea>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done.</p>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                    <button mat-button (click)="ajoutCom()">Submit</button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </mat-drawer>
+    <mat-drawer-content>
+        <button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button>
+    </mat-drawer-content>
+</mat-drawer-container>

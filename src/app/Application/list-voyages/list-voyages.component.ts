@@ -1,4 +1,5 @@
 
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Voyage } from 'src/app/Classes/voyage';
@@ -11,35 +12,59 @@ import { VoyageService } from 'src/app/Services/voyage.service';
 })
 export class ListVoyagesComponent implements OnInit {
   ListeVoyages: Voyage[] = [];
-  ListeFavoris: Voyage[] = [];
   voyageForm: FormGroup = new FormGroup({});
+  problemeForm: FormGroup = new FormGroup({});
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
   constructor(private voyageService: VoyageService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.ListeVoyages = this.voyageService.getVoyages();
     this.voyageForm = this.fb.group({
-      //datedep:[formatDate("",'dd-MM-YYYY', 'en')],
-      //datedarr:[formatDate("",'dd-MM-YYYY', 'en')],
-      lib: [''],
-      //datec: [false],
+      datedep:[new Date()],
+      datedarr:[new Date()],
+      pays: [''],
+      datec: [false],
       paysc: [false]
     });
-  }
-  ajouter(id: number): void {
-    this.voyageService.addFavoris(id);
-    this.ListeFavoris = this.voyageService.getFavoris();
+    this.problemeForm=this.fb.group({
+      Mail:[""],
+      type:[''],
+      pb:['']
+    });
+    this.firstFormGroup = this.fb.group({
+      firstCtrl: ['']
+    });
+    this.secondFormGroup = this.fb.group({
+      secondCtrl: ['']
+    });
+    this.thirdFormGroup = this.fb.group({
+      thirdCtrl: ['']
+    });
+    this.fourthFormGroup = this.fb.group({
+      fourthCtrl: ['']
+    });
   }
   paysc(): boolean {
     return this.voyageForm.controls.paysc.value
   }
- /* datec(): boolean {
+  datec(): boolean {
     return this.voyageForm.controls.datec.value
-  }*/
+  }
   onSubmit() {
-    console.log(this.voyageForm.controls.lib.value);
     if(this.voyageForm.controls.paysc.value)
     {
-      this.ListeVoyages=this.voyageService.VoyagesByLib(this.voyageForm.controls.lib.value);
+      this.ListeVoyages=this.voyageService.VoyagesByPays(this.voyageForm.controls.pays.value);
+    }
+    else if(this.voyageForm.controls.datec.value)
+    { this.ListeVoyages=this.voyageService.VoyagesByDate(new Date(this.voyageForm.controls.datedep.value),new Date(this.voyageForm.controls.datedarr.value));}
+    else
+    {
+      this.ListeVoyages=this.voyageService.VoyagesByPays(this.voyageForm.controls.pays.value);
+      this.ListeVoyages=this.voyageService.VoyagesByDate(new Date(this.voyageForm.controls.datedep.value),new Date(this.voyageForm.controls.datedarr.value));
     }
   }
+  ajoutCom(){console.log("Saghrouna <3");}
 }

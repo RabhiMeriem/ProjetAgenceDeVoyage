@@ -9,7 +9,7 @@ import { VoyageService } from 'src/app/Services/voyage.service';
   styleUrls: ['./selected-voyage.component.css']
 })
 export class SelectedVoyageComponent implements OnInit {
-  Voyage: Voyage = new Voyage(0, "", "", "", 0, 0, new Date(), new Date(), 0, []);
+  Voyage: Voyage = new Voyage(0, "","","", "", 0, 0, new Date(), new Date(), 0);
   nvprix: number =0;
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private voyageService: VoyageService) { }
   identifiant: number = 0;

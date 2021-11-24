@@ -10,7 +10,6 @@ const routes: Routes = [
   {path:'listeVoyages',component:ListVoyagesComponent},
   {path:'listeVoyages/:id',component:SelectedVoyageComponent},
   {path:'home',component:HomeComponent},
-  {path:'listeFavoris',component:ListFavorisComponent},
   {path:'', redirectTo:'home', pathMatch:'full'},
   {path:'**' ,component:ErrorComponent}
 ];

@@ -1,0 +1,12 @@
+.example-container {
+    height: 200px;
+    margin: 5px;
+    top:70%;
+  }
+  
+  mat-drawer-content {
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
