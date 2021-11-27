@@ -22,6 +22,7 @@ export class ListVoyagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.ListeVoyages = this.voyageService.getVoyages();
+
     this.voyageForm = this.fb.group({
       datedep:[new Date()],
       datedarr:[new Date()],

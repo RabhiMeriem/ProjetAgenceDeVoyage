@@ -1,12 +1,29 @@
 .example-container {
     height: 200px;
     margin: 5px;
-    top:70%;
+    top:50%;
   }
-  
+  h1{color:orange;margin: 2%;padding:2%;font-style: italic;font-family:URW Chancery L, cursive ;font-size:50px;}
   mat-drawer-content {
     padding: 100px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
+  .search {
+    background-color: orange;color: blue;font-size: 20px;box-shadow:50px;border-radius:25px;padding:2%;margin:2%;
+    height:auto;align-items: center;position: relative;
+  }
+  .card{position: relative;align-items: center;margin: 2%;padding: 2%;left:15%;width:70%;height:300px; border: 1px dashed orange;border-radius:25px}
+  .promo {
+    animation-name: myAnimation;
+    animation-duration:2s;
+    animation-iteration-count:infinite;
+    border-radius: 25px;
+    padding:3%;
+    margin:3%;
+}
+@keyframes myAnimation {
+    0%{background-color: white;color: blue;}
+    100%{background-color:blue;color:white;}
+}
