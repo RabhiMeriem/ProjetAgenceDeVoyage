@@ -1,3 +1,3 @@
 export class Commentaire {
-    constructor(){}
+    constructor(public nom: string, public adresse: string, public type: string, public com:string){}
 }

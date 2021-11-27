@@ -10,7 +10,6 @@ import { ErrorComponent } from './Application/error/error.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './Application/home/home.component';
-import { ListFavorisComponent } from './Application/list-favoris/list-favoris.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
@@ -19,7 +18,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatIconModule} from '@angular/material/icon';
-
+import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
+import { VoyagePipePipe } from './Pipes/voyage-pipe.pipe';
+import { OmraComponent } from './Application/omra/omra.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import {MatIconModule} from '@angular/material/icon';
     SelectedVoyageComponent,
     ErrorComponent,
     HomeComponent,
-    ListFavorisComponent
+    VoyagePipePipe,
+    OmraComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatSelectModule,
     MatAutocompleteModule,
-    MatIconModule
+    MatIconModule,
+    MdbCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

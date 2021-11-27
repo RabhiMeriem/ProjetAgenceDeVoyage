@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListFavorisComponent } from './list-favoris.component';
+import { OmraComponent } from './omra.component';
 
-describe('ListFavorisComponent', () => {
-  let component: ListFavorisComponent;
-  let fixture: ComponentFixture<ListFavorisComponent>;
+describe('OmraComponent', () => {
+  let component: OmraComponent;
+  let fixture: ComponentFixture<OmraComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListFavorisComponent ]
+      declarations: [ OmraComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListFavorisComponent);
+    fixture = TestBed.createComponent(OmraComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
