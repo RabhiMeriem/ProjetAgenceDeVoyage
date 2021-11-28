@@ -65,4 +65,10 @@ export class ListVoyagesComponent implements OnInit {
     let c=new Commentaire(this.firstFormGroup.controls.firstCtrl.value,this.secondFormGroup.controls.secondCtrl.value,this.thirdFormGroup.controls.thirdCtrl.value,this.fourthFormGroup.controls.fourthCtrl.value);
     this.CService.addCommentaire(c);
   }
+  promo(v:Voyage){
+    if(v.promo !=0)
+    {
+    return v.prix-(v.prix*(v.promo/100));}
+    else return v.prix;
+  }
 }

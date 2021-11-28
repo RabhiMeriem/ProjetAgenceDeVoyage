@@ -21,6 +21,10 @@ import {MatIconModule} from '@angular/material/icon';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { VoyagePipePipe } from './Pipes/voyage-pipe.pipe';
 import { OmraComponent } from './Application/omra/omra.component';
+import { LoginComponent } from './Application/login/login.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MenuAdminComponent } from './Application/Admin/menu-admin/menu-admin.component';
+import { FooterComponent } from './Application/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,10 @@ import { OmraComponent } from './Application/omra/omra.component';
     ErrorComponent,
     HomeComponent,
     VoyagePipePipe,
-    OmraComponent
+    OmraComponent,
+    LoginComponent,
+    MenuAdminComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +45,7 @@ import { OmraComponent } from './Application/omra/omra.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
+    MatDialogModule,
     MatSidenavModule,
     MatStepperModule,
     MatInputModule,

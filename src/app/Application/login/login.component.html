@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Connectez vous</h2>
+<div mat-dialog-content>
+    <form [formGroup]="loginForm" (ngSubmit)="Submit()">
+        <mat-form-field appearance="fill">
+        <mat-label>Mot de passe</mat-label>
+        <input type="password" matInput formControlName="psw">
+    </mat-form-field><br>
+    <button type="submit" matdialog-button> Connecter</button>
+    <button matdialog-button mat-dialog-close> close</button>
+    </form>
+    <div *ngIf="msg" class="alert alert-danger">Mot de passe incorrect</div>
+</div>
+<!-- <div [formGroup]="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Phone number</mat-label>
+    <example-tel-input formControlName="tel" required></example-tel-input>
+    <mat-icon matSuffix>phone</mat-icon>
+    <mat-hint>Include area code</mat-hint>
+  </mat-form-field>
+</div> -->

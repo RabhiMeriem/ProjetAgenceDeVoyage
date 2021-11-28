@@ -34,7 +34,7 @@
             <h1 style="font-size: 30px;margin:1%;padding:1%;">{{v.lib|titlecase}}</h1><br>
             </div>
             <div class="card-footer" height="70%">
-                <h5 style="font-size:25px;float:left"><i class="fas fa-coins"></i>{{v.prix}}</h5>
+                <h5 style="font-size:25px;float:left"><i class="fas fa-coins"></i>{{promo(v)}}</h5>
         <button class="btn btn-warning" style="position:absolute;left:80%" [routerLink]="['/listeVoyages',v.id]">Details</button>
       </div>
     </div>
@@ -100,7 +100,7 @@
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>Done</ng-template>
-                <p>You are now done.</p>
+                <p style="font-size:25px">You are now done.</p>
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
                     <button mat-button (click)="stepper.reset()">Reset</button>
