@@ -19,8 +19,8 @@ export class ListVoyagesComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
-  tabCom:Commentaire[]=[];
-  constructor(private voyageService: VoyageService, private fb: FormBuilder,private CService:CommentaireService) { }
+  tabCom: Commentaire[] = [];
+  constructor(private voyageService: VoyageService, private fb: FormBuilder, private CService: CommentaireService) { }
 
   ngOnInit(): void {
     this.ListeVoyages = this.voyageService.getVoyages();
@@ -43,7 +43,7 @@ export class ListVoyagesComponent implements OnInit {
     this.fourthFormGroup = this.fb.group({
       fourthCtrl: ['']
     });
-    this.tabCom=this.CService.getCommentaire();
+    this.tabCom = this.CService.getCommentaire();
   }
   paysc(): boolean {
     return this.voyageForm.controls.paysc.value
@@ -62,13 +62,13 @@ export class ListVoyagesComponent implements OnInit {
     }
   }
   ajoutCom() {
-    let c=new Commentaire(this.firstFormGroup.controls.firstCtrl.value,this.secondFormGroup.controls.secondCtrl.value,this.thirdFormGroup.controls.thirdCtrl.value,this.fourthFormGroup.controls.fourthCtrl.value);
+    let c = new Commentaire(0, this.firstFormGroup.controls.firstCtrl.value, this.secondFormGroup.controls.secondCtrl.value, this.thirdFormGroup.controls.thirdCtrl.value, this.fourthFormGroup.controls.fourthCtrl.value);
     this.CService.addCommentaire(c);
   }
-  promo(v:Voyage){
-    if(v.promo !=0)
-    {
-    return v.prix-(v.prix*(v.promo/100));}
+  promo(v: Voyage) {
+    if (v.promo != 0) {
+      return v.prix - (v.prix * (v.promo / 100));
+    }
     else return v.prix;
   }
 }

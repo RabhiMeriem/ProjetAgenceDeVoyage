@@ -1,0 +1,20 @@
+<form [formGroup]="ajoutForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="pays">
+    <input type="text" formControlName="lib">
+    <input type="number" formControlName="prix">
+    <input type="number" formControlName="promo">
+    <input type="date" formControlName="date_dep">
+    <input type="date" formControlName="date_arr">
+    <input type="submit" value="Ajouter le Voyage">
+    <h5>Ajouter des photos</h5>
+<div formArrayName="images">
+<div *ngFor="let p of images.controls; let i=index">
+Choix {{i+1}} <input type="text" [formControlName]="i"/>
+</div>
+</div>
+<button type="button"(click)="onAjouterImages()">
+Ajouter image
+</button>
+</form>
+<br><br>
+<button [routerLink]="['/menuAdmin']">Retour</button>

@@ -25,6 +25,9 @@ import { LoginComponent } from './Application/login/login.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MenuAdminComponent } from './Application/Admin/menu-admin/menu-admin.component';
 import { FooterComponent } from './Application/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ModifierVoyageComponent } from './Application/Admin/modifier-voyage/modifier-voyage.component';
+import { AjouterVoyageComponent } from './Application/Admin/ajouter-voyage/ajouter-voyage.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +40,9 @@ import { FooterComponent } from './Application/footer/footer.component';
     OmraComponent,
     LoginComponent,
     MenuAdminComponent,
-    FooterComponent
+    FooterComponent,
+    ModifierVoyageComponent,
+    AjouterVoyageComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,8 @@ import { FooterComponent } from './Application/footer/footer.component';
     MatSelectModule,
     MatAutocompleteModule,
     MatIconModule,
-    MdbCarouselModule
+    MdbCarouselModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

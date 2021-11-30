@@ -1,0 +1,12 @@
+<form [formGroup]="modifForm" (ngSubmit)="onSubmit()">
+    <input type="number" disabled>
+    <input type="text" formControlName="pays">
+    <input type="text" formControlName="lib">
+    <input type="number" formControlName="prix">
+    <input type="number" formControlName="promo">
+    <input type="date" formControlName="date_dep">
+    <input type="date" formControlName="date_arr">
+    <input type="submit" value="Modifier">
+</form>
+<br><br>
+<button [routerLink]="['/menuAdmin']">Retour</button>
