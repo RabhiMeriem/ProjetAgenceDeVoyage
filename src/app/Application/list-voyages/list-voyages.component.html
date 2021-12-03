@@ -1,15 +1,25 @@
-
+<app-menu></app-menu>
 <!-- Rechercher-->
 <h1 style="text-align:center;color:#330867">Trouvez votre destination</h1>
 <div class="recherche">
 <div class="col-md-12 align-self-center" style="position: absolute;bottom: 9%;text-align: center;">
-<div height="300px" style="background-color:rgba(177, 177, 177, 0.486);color:white">
+<div height="50%" style="background-color:rgba(177, 177, 177, 0.486);color:white">
 <form  [formGroup]="voyageForm" (ngSubmit)="onSubmit()" style="position:relative;font-size: 150%;">
     <mat-slide-toggle color="accent" formControlName="datec">Date</mat-slide-toggle><br>
-    <input type="date" style="height:50px;opacity: 1;" formControlName="datedep" [hidden]="!datec()">
-    <input type="date" style="height:50px" formControlName="datedarr" [hidden]="!datec()"><br>
+    <input type="date" style="height:20%;opacity: 1;" formControlName="datedep" [hidden]="!datec()">
+    <input type="date" style="height:20%" formControlName="datedarr" [hidden]="!datec()"><br>
     <mat-slide-toggle color="accent" formControlName="paysc" >pays</mat-slide-toggle><br>
-    <input type="text" name="p" style="height:50px" formControlName="pays" [hidden]="!paysc()" ><br>
+   
+    <!-- <div [hidden]="!paysc()">
+    <mat-form-field appearance="fill">
+        <mat-label>Pays</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let p of pays" [value]="p" formControlName="pays" >
+                {{p}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div> -->
     <input type="submit" value="Rechercher" class="btn btn-primary">
 </form>
 </div>
@@ -19,20 +29,20 @@
 <p class="text-center ">Nos meilleurs destinations </p>
 <p class="text-center test">Réservez maintenant votre vol en temps réel</p>
 
-<div class="row" style="width:100%">
-    <div class="col-sm-5" *ngFor="let v of ListeVoyages">
+<div class="row" style="width:98%">
+    <div class="col-sm-4" *ngFor="let v of ListeVoyages">
       <div class="card">
-            <div class="example-button-container" style="position: absolute;left: 85%;top:80%">
+            <div class="card-body">
+                <img [src]="v.photo[0]" width="100%" >
+            </div>
+            <div class="container row card-title">
+            <h1 class="col-md"style="font-size: 30px;margin:1%;padding:1%;">{{v.lib|titlecase}}</h1><br>
+            <div class="example-button-container col-md-3">
                 <button *ngIf="v.promo!=0" mat-fab color="accent" aria-label="promo" style="font-size:120%">
                   {{v.promo|voyagePipe}}
                 </button>
               </div>
-            <div class="card-body">
-                <img [src]="v.photo[0]" width="97%" height="60%">
-            </div>
-            <div class="card-title">
-            <h1 style="font-size: 30px;margin:1%;padding:1%;">{{v.lib|titlecase}}</h1><br>
-            </div>
+        </div>
             <div class="card-footer" height="70%">
                 <h5 style="font-size:25px;float:left"><i class="fas fa-coins"></i>{{promo(v)}}</h5>
         <button class="btn btn-warning" style="position:absolute;left:80%" [routerLink]="['/listeVoyages',v.id]">Details</button>
@@ -73,8 +83,8 @@
                     <mat-form-field appearance="fill">
                         <mat-label>Problème ou Renseignement</mat-label>
                         <mat-select>
-                            <mat-option>
-
+                            <mat-option *ngFor="let t of type" [value]="t">
+                                {{t}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -113,3 +123,4 @@
       <span color="#330867" style="font-size: 200%;"> Avez vous un problème ? <button class="btn btn-primary"  (click)="drawer.toggle()">Signaler</button></span>
     </mat-drawer-content>
 </mat-drawer-container>
+<app-footer></app-footer>

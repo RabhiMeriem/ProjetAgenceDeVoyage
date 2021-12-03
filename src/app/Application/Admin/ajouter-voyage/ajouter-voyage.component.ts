@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Voyage } from 'src/app/Classes/voyage';
 import { VoyageService } from 'src/app/Services/voyage.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { VoyageService } from 'src/app/Services/voyage.service';
 })
 export class AjouterVoyageComponent implements OnInit {
   ajoutForm:FormGroup;
+  listeV:Voyage[]=[];
   constructor(private fb:FormBuilder, private voyageService:VoyageService) { }
 
   ngOnInit(): void {
@@ -17,22 +19,24 @@ export class AjouterVoyageComponent implements OnInit {
       lib:[""],
       prix:[],
       promo:[],
-      date_dep:[new Date()],
-      date_arr:[new Date()],
-      images: this.fb.array([])
+      date_dep:[""],
+      date_arr:[""],
+      detail:[""],
+      photo: this.fb.array([])
     })
+    this.voyageService.getVoyages().subscribe( data => this.listeV = data)
   }
-  public get images()
+  public get photo()
 {
-return this.ajoutForm.get('images') as FormArray;
+return this.ajoutForm.get('photo') as FormArray;
 }
 onAjouterImages()
 {
-this.images.push(this.fb.control(''));
+this.photo.push(this.fb.control(''));
 }
 
   onSubmit()
   {
-    this.voyageService.addVoyage(this.ajoutForm.value);
+    this.voyageService.addVoyage(this.ajoutForm.value).subscribe();
   }
 }

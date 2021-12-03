@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 Submit(){
   if(this.loginForm.controls.psw.value==this.mdp)
   {
-    this.route.navigate(['menuAdmin']);
+    this.route.navigate(['homeAdmin']);
     this.msg=false;
   }
   else

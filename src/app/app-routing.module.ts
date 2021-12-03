@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AjouterVoyageComponent } from './Application/Admin/ajouter-voyage/ajouter-voyage.component';
-import { MenuAdminComponent } from './Application/Admin/menu-admin/menu-admin.component';
+import { HomeAdminComponent } from './Application/Admin/home-admin/home-admin.component';
 import { ModifierVoyageComponent } from './Application/Admin/modifier-voyage/modifier-voyage.component';
 import { ErrorComponent } from './Application/error/error.component';
 import { HomeComponent } from './Application/home/home.component';
@@ -14,10 +14,10 @@ const routes: Routes = [
   {path:'listeVoyages/:id',component:SelectedVoyageComponent},
   {path:'home',component:HomeComponent},
   {path:'omra',component:OmraComponent},
-  {path:'menuAdmin',component:MenuAdminComponent},
+  {path:'homeAdmin',component:HomeAdminComponent},
   {path:'ajouterVoyage',component:AjouterVoyageComponent},
   {path:'modifierVoyage/:id',component:ModifierVoyageComponent},
-  {path:'', redirectTo:'home', pathMatch:'full'},
+  {path:'', redirectTo:'listeVoyages', pathMatch:'full'},
   {path:'**' ,component:ErrorComponent}
 ];
 

@@ -1,25 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Commentaire } from '../Classes/commentaire';
-
+const URL="http://localhost:3000/commentaire";
 @Injectable({
   providedIn: 'root'
 })
 export class CommentaireService {
   tabCom: Commentaire[] =[];
   n:number=0;
-  constructor() { }
-  addCommentaire(commentaire: Commentaire) {
-    var c1 = Object.assign({}, commentaire);
-    c1.id=this.n;
-    this.n++;
-    this.tabCom.push(c1);
-  }
-  getCommentaire() { return this.tabCom;}
-  suppCommentaire(id:number) {
-    this.tabCom.splice(id,1);
-    for(let i:number=id;i<this.tabCom.length;i++)
-    {
-    this.tabCom[i].id--;
+  constructor(private http:HttpClient) { }
+  getCommentaires():Observable<Commentaire[]> {
+    return this.http.get<Commentaire[]>(URL);
     }
+    supprimerCommentaire(id:number)
+    {
+        return this.http.delete(URL+"/"+ id);
+    }
+  addCommentaire(commentaire: Commentaire) {
+    return this.http.post<Commentaire>(URL,commentaire);
   }
 }

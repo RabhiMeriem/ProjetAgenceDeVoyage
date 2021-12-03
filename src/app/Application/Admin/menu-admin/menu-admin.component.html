@@ -1,29 +1,23 @@
-<button style="position:relative;top:30%" [routerLink]="['/ajouterVoyage']">Ajouter un voyage</button>
 
-<table class="table table-striped">
-    <thead class="thead thead-dark">
-      <tr>
-        <th>#</th>
-        <th>Pays</th>
-        <th>Libelle</th>
-        <th>Prix</th>
-        <th>Promo</th>
-        <th>Date de depart</th>
-        <th>Date d'arrivée</th>
-        <th colspan="2" style="text-align: center">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let l of listeVoyage">
-        <th>{{l.id}}</th>
-        <td>{{l.pays}}</td>
-        <td>{{l.lib}}</td>
-        <td>{{l.prix}}</td>
-        <td>{{l.promo}}</td>
-        <td>{{l.date_dep |date : 'dd/MM/YYYY'}}</td>
-        <td>{{l.date_arr |date : 'dd/MM/YYYY'}}</td>
-        <td><button class="btn btn-warning" [routerLink]="['/modifierVoyage',l.id]">Modifier</button></td>
-        <td><button (click)="suppVoy(l.id)" class="btn btn-danger">Supprimer</button></td>
-      </tr>
-    </tbody>
-  </table>
+<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark shadow sticky-nav">
+  <div class="container-fluid">
+    <div class="d-flex w-sm-250 px-md-200 px-3"> 
+      <div>
+          <img src="../../../assets/tayaretna.png" alt="Best Tunisia Travel" title="Best Tunisia Travel" margin="1%" padding="1%" width="40px" height="30px" style="transform:scale(2.7);">
+      </div>
+  </div>
+  <div class="d-flex w-sm-250 px-md-200 px-3"> 
+      <div>
+          <h1>Best Tunisia Travel</h1>
+      </div>
+  </div>
+  <div class="collapse navbar-collapse principal-navbar animate__animated animate__backInLeft" id="navbarCollapse">
+        <ul class="navbar navbar-nav ms-auto mb-2 mb-md-0">      
+    <li class="nav-item"><img style="border-radius: 13px;" src="https://e7.pngegg.com/pngimages/9/763/png-clipart-computer-icons-login-user-system-administrator-admin-desktop-wallpaper-megaphone-thumbnail.png" width="50" height="50" alt="phone BestTunisiaTravel" title="phone BestTunisiaTravel" class="img-fluid me-2"></li>
+    <button class="btn btn-light c1" mat-stroked-button color="primary" [routerLink]="['/listeVoyages']">Se deconnecter</button>
+
+  </ul>
+  </div> <!-- navbar-collapse.// -->
+</div><!-- container //  -->
+</nav>
+ 

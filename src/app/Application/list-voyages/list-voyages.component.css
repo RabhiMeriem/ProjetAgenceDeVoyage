@@ -1,3 +1,6 @@
+@media only screen and (max-width: 1400px) {
+  .example-button-container{position:relative;top:3%}
+}
 .example-container {
     margin: 5px;
     top:50%;

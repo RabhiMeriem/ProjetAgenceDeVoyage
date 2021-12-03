@@ -1,14 +1,16 @@
+<app-menu-admin></app-menu-admin>
 <form [formGroup]="ajoutForm" (ngSubmit)="onSubmit()">
-    <input type="text" formControlName="pays">
+    <input type="text" formControlName="pays" style="position:relative;z-index:1;">
     <input type="text" formControlName="lib">
     <input type="number" formControlName="prix">
     <input type="number" formControlName="promo">
     <input type="date" formControlName="date_dep">
     <input type="date" formControlName="date_arr">
+    <input type="textarea" formControlName="detail">
     <input type="submit" value="Ajouter le Voyage">
     <h5>Ajouter des photos</h5>
-<div formArrayName="images">
-<div *ngFor="let p of images.controls; let i=index">
+<div formArrayName="photo">
+<div *ngFor="let p of photo.controls; let i=index">
 Choix {{i+1}} <input type="text" [formControlName]="i"/>
 </div>
 </div>
@@ -17,4 +19,4 @@ Ajouter image
 </button>
 </form>
 <br><br>
-<button [routerLink]="['/menuAdmin']">Retour</button>
+<button [routerLink]="['/homeAdmin']">Retour</button>

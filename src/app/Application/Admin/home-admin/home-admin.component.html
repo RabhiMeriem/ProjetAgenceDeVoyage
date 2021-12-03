@@ -1,0 +1,54 @@
+<app-menu-admin></app-menu-admin>
+<h1 style="text-align:center;color:#330867">Rechercher un voyage ?</h1>
+<div>
+<div class="col-md-12 align-self-center" style="text-align: center;">
+<div height="50%" style="background-color:rgba(177, 177, 177, 0.486);color:white; margin:'1%'; padding:'1%'">
+<form  [formGroup]="voyageForm" (ngSubmit)="onSubmit()" style="font-size: 150%;">
+    <mat-slide-toggle color="accent" formControlName="datec">Date</mat-slide-toggle><br>
+    <input type="date" style="height:20%;opacity: 1;" formControlName="datedep" [hidden]="!datec()">
+    <input type="date" style="height:20%" formControlName="datedarr" [hidden]="!datec()"><br>
+    <mat-slide-toggle color="accent" formControlName="paysc" >pays</mat-slide-toggle><br>
+   
+    <!-- <div [hidden]="!paysc()">
+    <mat-form-field appearance="fill">
+        <mat-label>Pays</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let p of pays" [value]="p" formControlName="pays" >
+                {{p}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div> -->
+    <button type="submit" class="btn btn-info" style="margin:2%" type="submit"> Rechercher</button>
+</form>
+</div>
+</div>
+</div>
+<button class="btn btn-info" style="position:relative;left:43%;margin:2%" [routerLink]="['/ajouterVoyage']">Ajouter un voyage</button>
+<table class="table table-striped">
+    <thead class="thead thead-dark">
+      <tr>
+        <th>#</th>
+        <th>Pays</th>
+        <th>Libelle</th>
+        <th>Prix</th>
+        <th>Promo</th>
+        <th>Date de depart</th>
+        <th>Date d'arrivée</th>
+        <th colspan="2" style="text-align: center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let l of listeVoyage">
+        <th>{{l.id}}</th>
+        <td>{{l.pays}}</td>
+        <td>{{l.lib}}</td>
+        <td>{{l.prix}}</td>
+        <td>{{l.promo}}</td>
+        <td>{{l.date_dep |date : 'dd/MM/YYYY'}}</td>
+        <td>{{l.date_arr |date : 'dd/MM/YYYY'}}</td>
+        <td><button class="btn btn-warning" [routerLink]="['/modifierVoyage',l.id]">Modifier</button></td>
+        <td><button (click)="suppVoy(l.id)" class="btn btn-danger">Supprimer</button></td>
+      </tr>
+    </tbody>
+  </table>

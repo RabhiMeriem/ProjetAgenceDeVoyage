@@ -28,6 +28,8 @@ import { FooterComponent } from './Application/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ModifierVoyageComponent } from './Application/Admin/modifier-voyage/modifier-voyage.component';
 import { AjouterVoyageComponent } from './Application/Admin/ajouter-voyage/ajouter-voyage.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { HomeAdminComponent } from './Application/Admin/home-admin/home-admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,8 @@ import { AjouterVoyageComponent } from './Application/Admin/ajouter-voyage/ajout
     MenuAdminComponent,
     FooterComponent,
     ModifierVoyageComponent,
-    AjouterVoyageComponent
+    AjouterVoyageComponent,
+    HomeAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { AjouterVoyageComponent } from './Application/Admin/ajouter-voyage/ajout
     MatAutocompleteModule,
     MatIconModule,
     MdbCarouselModule,
+    MatSnackBarModule,
     HttpClientModule
   ],
   providers: [],

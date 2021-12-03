@@ -1,51 +1,61 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Voyage } from '../Classes/voyage';
-
+const URL="http://localhost:3000/voyage";
 @Injectable({
   providedIn: 'root'
 })
 export class VoyageService {
-  ListeV: Voyage[] = [
-    new Voyage(1, "Tunisie", "tunis", ["../../assets/tunis.jpg", "../../assets/tunis2.jpg", "../../assets/tunis3.jpg", "../../assets/tunis4.jpg"], "Venez découvrir la capitale tunisienne fondée par les Berbères. Une ville chargée d’histoire, contrôlée successivement par les Phéniciens, les Romains, les Arabes, les Ottomans, les Espagnols, les Français et les Alllemands ! Mélange de cultures anciennes et modernes garanti ! La Médina est incontournable avec ses charmantes mosquées, palaces et bien sûr les souks où vous pourrez marchander tout autant des babioles que des objets de valeur. Découvrez une vie nocturne animée dans le quartier magnifique de Sidi Bou Saïdfor.", 2500, 0, new Date("09/25/2021"), new Date("09/26/2021")),
-    new Voyage(2, "France", "Toulouse", ["../../assets/toulouse.jpg", "../../assets/toulouse2.jpg", "../../assets/toulouse3.jpg", "../../assets/toulouse4.jpg"], "Toulouse, dans le sud-ouest de la France, est une ville de contrastes.Visitez l'Académie des Jeux Floraux, la société littéraire la plus ancienne du monde occidental, ainsi que la Galerie du Château d'eau, le premier musée de photographie au monde. Promenez-vous le long de la Garonne avant de découvrir le plus bel orgue de France à la basilique Saint-Sernin. Malgré son architecture médiévale, Toulouse reste une ville moderne, berceau de l'industrie aérospatiale européenne, et les bars et restaurants animent la place du Capitole.", 2500, 25, new Date("12/12/2021"), new Date("12/13/2021")),
-    new Voyage(3, "France", "Paris", ["../../assets/paris.jpg", "../../assets/paris2.jpg", "../../assets/paris3.jpg", "../../assets/paris4.jpg"], "Aucun autre endroit au monde ne fait autant rêver que Paris. La ville séduit par son art, son architecture, sa culture et sa cuisine, mais il y a aussi des merveilles plus discrètes qui n’attendent qu’à être explorées : les ruelles pavées pittoresques, les pâtisseries au coin de la rue et les petits bistrots douillets qui vous invitent à boire un verre de beaujolais. Préparez-vous à vous approprier Paris.", 2500, 15, new Date("09/05/2021"), new Date("05/11/2021")),
-    new Voyage(4, "Allemagne", "Berlin", ["../../assets/berlin.jpg", "../../assets/berlin2.jpg", "../../assets/berlin3.jpg", "../../assets/berlin4.jpg"], "De sa mode jusqu'à son architecture en passant par sa riche histoire politique, Berlin a toujours été une ville d'avant-garde. Le mur de Berlin est un triste rappel de l'atmosphère pesante qui planait sur la ville après la guerre. Malgré tout, les graffitis qui recouvrent désormais ce qu'il en reste sont devenus le symbole du progrès social. Partez découvrir le Weltzeituhr, horloge universelle surmontée d'une reproduction du système solaire, puis remontez le temps à l'occasion d'un dîner au Zur Letzten Instanz, restaurant dont l'origine remonte au XVIe siècle et qui a compté Napoléon et Beethoven parmi ses clients.", 2500, 60, new Date("05/09/2021"), new Date("05/11/2021")),
-    new Voyage(5, "Espagne", "Madrid", ["../../assets/madrid.jpg", "../../assets/madrid2.jpg", "../../assets/madrid3.jpg", "../../assets/madrid4.jpg"], "Si Madrid ressemble à un conte de fées, c'est parce qu'elle abrite de nombreux édifices dont l'architecture rappelle de magnifiques châteaux. Même l'Hôtel de Ville, orné de pinacles blancs et d'éléments au style néogothique, vous surprendra. Si vous souhaitez découvrir l'architecture madrilène par vous-même, la grande statue de l'Ours et de l'arbousier sur la place de la Puerta del Sol dans le centre-ville est un bon point de départ. Faites un tour dans le quartier du Palais royal avant de vous laisser imprégner par la beauté naturelle du parc du Retiro, puis enchaînez avec la visite d'un des nombreux musées que compte la ville. L'art s'invite aussi à votre table, alors ne manquez pas de terminer la journée en dégustant un bel assortiment de tapas avec un verre de vin de la Rioja.", 2500, 0, new Date("09/19/2021"), new Date("05/11/2021")),
-    new Voyage(6, "America", "New York", ["../../assets/newYork.jpg", "../../assets/newYork2.jpg", "../../assets/newYork3.jpg", "../../assets/newYork4.jpg"], "Les plus hauts buildings, les plus grands musées et la meilleure pizza : New York City est la ville des superlatifs, auxquels elle fait largement honneur. Avec l'incroyable scène de Broadway, les splendides galeries du MoMA, les boutiques de SoHo et la multitude de restaurants proposant des plats de tous les coins du monde, vous découvrirez une nouvelle ville à chacune de vos visites. Mais au-delà de ces lieux emblématiques, on trouve un New York moins connu. Même lors d'une courte promenade, vous découvrirez sans aucun doute des boutiques vintage et des cafés fréquentés seulement par les locaux. Et lorsque la foule et le bruit vous fatiguent, levez les yeux : ces gratte-ciel uniques vous rappelleront pourquoi vous souhaitiez tant venir.", 2500, 50, new Date("09/13/2021"), new Date("05/11/2021"))
-  ];
-  listeVtrie: Voyage[] = this.ListeV;
-  constructor() { }
-  getVoyages() { return this.ListeV; }
-  getVoyageById(id: number) { return this.ListeV.find(v => v.id == id); }
-  VoyagesByPays(pays: string) {
-    pays = pays.charAt(0).toUpperCase() + pays.substr(1);
-    this.listeVtrie=this.ListeV;
-    this.listeVtrie = this.listeVtrie.filter(v => v.pays == pays);
-    return this.listeVtrie;
+  // ListeV: Voyage[] = [
+  //   new Voyage(1, "Tunisie", "tunis", ["../../assets/tunis.jpg", "../../assets/tunis2.jpg", "../../assets/tunis3.jpg", "../../assets/tunis4.jpg"], "Venez découvrir la capitale tunisienne fondée par les Berbères. Une ville chargée d’histoire, contrôlée successivement par les Phéniciens, les Romains, les Arabes, les Ottomans, les Espagnols, les Français et les Alllemands ! Mélange de cultures anciennes et modernes garanti ! La Médina est incontournable avec ses charmantes mosquées, palaces et bien sûr les souks où vous pourrez marchander tout autant des babioles que des objets de valeur. Découvrez une vie nocturne animée dans le quartier magnifique de Sidi Bou Saïdfor.", 2500, 0, new Date("09/25/2021"), new Date("09/26/2021")),
+  //   new Voyage(2, "France", "Toulouse", ["../../assets/toulouse.jpg", "../../assets/toulouse2.jpg", "../../assets/toulouse3.jpg", "../../assets/toulouse4.jpg"], "Toulouse, dans le sud-ouest de la France, est une ville de contrastes.Visitez l'Académie des Jeux Floraux, la société littéraire la plus ancienne du monde occidental, ainsi que la Galerie du Château d'eau, le premier musée de photographie au monde. Promenez-vous le long de la Garonne avant de découvrir le plus bel orgue de France à la basilique Saint-Sernin. Malgré son architecture médiévale, Toulouse reste une ville moderne, berceau de l'industrie aérospatiale européenne, et les bars et restaurants animent la place du Capitole.", 2500, 25, new Date("12/12/2021"), new Date("12/13/2021")),
+  //   new Voyage(3, "France", "Paris", ["../../assets/paris.jpg", "../../assets/paris2.jpg", "../../assets/paris3.jpg", "../../assets/paris4.jpg"], "Aucun autre endroit au monde ne fait autant rêver que Paris. La ville séduit par son art, son architecture, sa culture et sa cuisine, mais il y a aussi des merveilles plus discrètes qui n’attendent qu’à être explorées : les ruelles pavées pittoresques, les pâtisseries au coin de la rue et les petits bistrots douillets qui vous invitent à boire un verre de beaujolais. Préparez-vous à vous approprier Paris.", 2500, 15, new Date("09/05/2021"), new Date("05/11/2021")),
+  //   new Voyage(4, "Allemagne", "Berlin", ["../../assets/berlin.jpg", "../../assets/berlin2.jpg", "../../assets/berlin3.jpg", "../../assets/berlin4.jpg"], "De sa mode jusqu'à son architecture en passant par sa riche histoire politique, Berlin a toujours été une ville d'avant-garde. Le mur de Berlin est un triste rappel de l'atmosphère pesante qui planait sur la ville après la guerre. Malgré tout, les graffitis qui recouvrent désormais ce qu'il en reste sont devenus le symbole du progrès social. Partez découvrir le Weltzeituhr, horloge universelle surmontée d'une reproduction du système solaire, puis remontez le temps à l'occasion d'un dîner au Zur Letzten Instanz, restaurant dont l'origine remonte au XVIe siècle et qui a compté Napoléon et Beethoven parmi ses clients.", 2500, 60, new Date("05/09/2021"), new Date("05/11/2021")),
+  //   new Voyage(5, "Espagne", "Madrid", ["../../assets/madrid.jpg", "../../assets/madrid2.jpg", "../../assets/madrid3.jpg", "../../assets/madrid4.jpg"], "Si Madrid ressemble à un conte de fées, c'est parce qu'elle abrite de nombreux édifices dont l'architecture rappelle de magnifiques châteaux. Même l'Hôtel de Ville, orné de pinacles blancs et d'éléments au style néogothique, vous surprendra. Si vous souhaitez découvrir l'architecture madrilène par vous-même, la grande statue de l'Ours et de l'arbousier sur la place de la Puerta del Sol dans le centre-ville est un bon point de départ. Faites un tour dans le quartier du Palais royal avant de vous laisser imprégner par la beauté naturelle du parc du Retiro, puis enchaînez avec la visite d'un des nombreux musées que compte la ville. L'art s'invite aussi à votre table, alors ne manquez pas de terminer la journée en dégustant un bel assortiment de tapas avec un verre de vin de la Rioja.", 2500, 0, new Date("09/19/2021"), new Date("05/11/2021")),
+  //   new Voyage(6, "America", "New York", ["../../assets/newYork.jpg", "../../assets/newYork2.jpg", "../../assets/newYork3.jpg", "../../assets/newYork4.jpg"], "Les plus hauts buildings, les plus grands musées et la meilleure pizza : New York City est la ville des superlatifs, auxquels elle fait largement honneur. Avec l'incroyable scène de Broadway, les splendides galeries du MoMA, les boutiques de SoHo et la multitude de restaurants proposant des plats de tous les coins du monde, vous découvrirez une nouvelle ville à chacune de vos visites. Mais au-delà de ces lieux emblématiques, on trouve un New York moins connu. Même lors d'une courte promenade, vous découvrirez sans aucun doute des boutiques vintage et des cafés fréquentés seulement par les locaux. Et lorsque la foule et le bruit vous fatiguent, levez les yeux : ces gratte-ciel uniques vous rappelleront pourquoi vous souhaitiez tant venir.", 2500, 50, new Date("09/13/2021"), new Date("05/11/2021"))
+  // ];
+  constructor(private http:HttpClient) { }
+
+  getVoyages():Observable<Voyage[]>{
+    return this.http.get<Voyage[]>(URL);
+    } 
+    getPays(){
+      // var x:string[];
+      // for(var i=0;i<;i++){
+      //   this.x.push(this.http.get<string[]>(URL+"/"+i));
+      // }
+      // return x; 
+      }
+    //getPays(){
+      // var x:string[];
+      // this.getVoyages().subscribe(data=>{
+      //   for(var i=0; i<data.length;i++){
+      //     x[i]=data[i].pays
+      //   }
+      //   return x;
+      // })
+      // return x;
+      //}
+    getVoyageById(id: number):Observable<Voyage> { return this.http.get<Voyage>(URL+"?id="+id); }
+  VoyagesByPays(pays: string):Observable<Voyage[]> {
+     pays = pays.charAt(0).toUpperCase() + pays.substr(1);
+     return this.http.get<Voyage[]>(URL+"?pays="+pays);
   }
-  VoyagesByDate(Dep: Date, Arr: Date) {
-    this.listeVtrie=this.ListeV;
-    let dep_y=Dep.getFullYear()+"/"+Dep.getMonth()+"/"+Dep.getDate();
-    let arr_y=Arr.getFullYear()+"/"+Arr.getMonth()+"/"+Arr.getDate();
-    this.listeVtrie = this.listeVtrie.filter(v => v.date_dep.getFullYear()+"/"+v.date_dep.getMonth()+"/"+v.date_dep.getDate() >= dep_y && v.date_arr.getFullYear()+"/"+v.date_arr.getMonth()+"/"+v.date_arr.getDate() <= arr_y);
-    return this.listeVtrie;
+  VoyagesByDate(Dep: string, Arr: string):Observable<Voyage[]>{
+    return this.http.get<Voyage[]>(URL+"?date_dep="+Dep+"&date_arr="+Arr);
   }
-  addVoyage(v:Voyage) {
-    let v1=Object.assign({},v);
-    v1.id=this.ListeV.length+1;
-    this.ListeV.push(v1);
+  VoyagesByDatePays(Dep: string, Arr: string,pays:string):Observable<Voyage[]>{
+    return this.http.get<Voyage[]>(URL+"?date_dep="+Dep+"&date_arr="+Arr+"&pays="+pays);
   }
+  addVoyage(v:Voyage):Observable<Voyage>{
+    return this.http.post<Voyage>(URL, v);
+    }
   supprimerVoyage(id:number)
   {
-    this.ListeV.splice(id-1,1);
-    for(let i:number=id-1;i<this.ListeV.length;i++)
-    {
-    this.ListeV[i].id--;
+      return this.http.delete(URL+"/"+ id);
+  }
+  modifierVoyage(id:number, v:Voyage):Observable<Voyage> {
+    return this.http.put<Voyage>(URL+"/"+ id, v);
     }
-  }
-  modifierVoyage(v:Voyage)
-  {
-    this.supprimerVoyage(v.id);
-    this.addVoyage(v);
-  }
 }

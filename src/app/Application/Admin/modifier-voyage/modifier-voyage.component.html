@@ -1,12 +1,27 @@
+<app-menu-admin></app-menu-admin>
 <form [formGroup]="modifForm" (ngSubmit)="onSubmit()">
-    <input type="number" disabled>
+    <input type="number" [value]="voy[0].id" disabled>
     <input type="text" formControlName="pays">
     <input type="text" formControlName="lib">
     <input type="number" formControlName="prix">
     <input type="number" formControlName="promo">
-    <input type="date" formControlName="date_dep">
-    <input type="date" formControlName="date_arr">
+    <input type="text" formControlName="date_dep" >
+    <input type="text" formControlName="date_arr">
     <input type="submit" value="Modifier">
+    <div *ngFor="let v of voy[0].photo; let i=index">
+        <input type="text" name="img" [value]="v">
+    </div>
+    <br><br><br><br>
+    <div formArrayName="photo">
+        <div *ngFor="let p of photo.controls; let i=index">
+        <div *ngIf="i+1<=voy[0].photo.length">Modifier l'image num {{i+1}}:</div> 
+        <div *ngIf="i+1>voy[0].photo.length">Ajouter l'image num {{i+1}}:</div> 
+        <input type="text" [formControlName]="i"/>
+        </div>
+        </div><br><br><br><br>
+        <button type="button"(click)="onAjouterImages()">
+        Modifier les images
+        </button>
 </form>
 <br><br>
-<button [routerLink]="['/menuAdmin']">Retour</button>
+<button [routerLink]="['/homeAdmin']">Retour</button>
