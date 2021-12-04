@@ -1,0 +1,21 @@
+<h1></h1>
+<table class="table table-striped container">
+    <thead class="thead thead-dark">
+      <tr>
+        <th>Nom</th>
+        <th>Adresse</th>
+        <th>type</th>
+        <th>commentaire</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of listeCom">
+        <td>{{c.nom}}</td>
+        <td>{{c.adresse}}</td>
+        <td>{{c.type}}</td>
+        <td>{{c.com}}</td>
+        <td><button (click)="onSupprimer(c.id)">Supprimer</button>
+      </tr>
+    </tbody>
+  </table>

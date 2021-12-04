@@ -30,6 +30,7 @@ import { ModifierVoyageComponent } from './Application/Admin/modifier-voyage/mod
 import { AjouterVoyageComponent } from './Application/Admin/ajouter-voyage/ajouter-voyage.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HomeAdminComponent } from './Application/Admin/home-admin/home-admin.component';
+import { CommentaireAdminComponent } from './Application/Admin/commentaire-admin/commentaire-admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { HomeAdminComponent } from './Application/Admin/home-admin/home-admin.co
     FooterComponent,
     ModifierVoyageComponent,
     AjouterVoyageComponent,
-    HomeAdminComponent
+    HomeAdminComponent,
+    CommentaireAdminComponent
   ],
   imports: [
     BrowserModule,

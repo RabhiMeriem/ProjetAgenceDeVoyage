@@ -31,7 +31,6 @@ export class ListVoyagesComponent implements OnInit {
       }
     });
     this.voyageService.getVoyages().subscribe( data => this.ListeVoyages = data);
-
     //this.s();
     this.voyageForm = this.fb.group({
       datedep: [""],

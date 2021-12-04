@@ -1,10 +1,13 @@
 <app-menu-admin></app-menu-admin>
 <div>
 <form [formGroup]="ajoutForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+    <legend>Formulaire d'ajout de voyage</legend>
 <mat-form-field appearance="fill">
     <mat-label>Pays</mat-label>
     <input matInput formControlName="pays">
   </mat-form-field>
+  <div [hidden]="!isValidPays()" class="alert alert-danger">Premiere lettre de chaque mot doit etre majuscule</div>
   <mat-form-field appearance="fill">
     <mat-label>Libelle</mat-label>
     <input matInput formControlName="lib">
@@ -25,11 +28,11 @@
     <mat-label>Date Arrivee</mat-label>
     <input matInput type="date" formControlName="date_arr">
   </mat-form-field>
-  <mat-form-field appearance="fill">
+  <mat-form-field class="c1" appearance="fill">
     <mat-label>Details</mat-label>
     <textarea matInput formControlName="detail"></textarea>
-  </mat-form-field>
-    <button class="btn btn-info" type="button"(click)="onAjouterImages()">Cliquer pour ajouter une image</button>
+  </mat-form-field><br>
+    <button class="btn btn-secondary" type="button"(click)="onAjouterImages()">Cliquer pour ajouter une image</button>
       <div formArrayName="photo">
         <div *ngFor="let p of photo.controls; let i=index">
             <mat-form-field appearance="fill">
@@ -39,8 +42,10 @@
             </div>
         </div>
 
-<button class="btn btn-success" type="submit">Ajouter le Voyage</button>
+<button class="btn btn-info" type="submit" [disabled]="ajoutForm.invalid">Ajouter le Voyage</button>
+</fieldset>
 </form>
-</div>
+
 <br><br>
-<button class="btn btn-warning" [routerLink]="['/homeAdmin']">Retour</button>
+<button class="btn btn-dark" [routerLink]="['/homeAdmin']">Retour</button>
+</div>

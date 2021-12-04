@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AjouterVoyageComponent } from './Application/Admin/ajouter-voyage/ajouter-voyage.component';
+import { CommentaireAdminComponent } from './Application/Admin/commentaire-admin/commentaire-admin.component';
 import { HomeAdminComponent } from './Application/Admin/home-admin/home-admin.component';
 import { ModifierVoyageComponent } from './Application/Admin/modifier-voyage/modifier-voyage.component';
 import { ErrorComponent } from './Application/error/error.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:'listeVoyages',component:ListVoyagesComponent},
   {path:'listeVoyages/:id',component:SelectedVoyageComponent},
   {path:'home',component:HomeComponent},
+  {path:'commentaireAdmin',component:CommentaireAdminComponent},
   {path:'omra',component:OmraComponent},
   {path:'homeAdmin',component:HomeAdminComponent},
   {path:'ajouterVoyage',component:AjouterVoyageComponent},

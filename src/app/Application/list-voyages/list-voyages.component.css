@@ -7,7 +7,8 @@
 .example-container {
     margin: 5px;
     top:50%;
-    width:100%;
+    max-width: 102.5%;
+    width:102.5%;
   }
   p{
     color:#330867;font-size:500%;padding:1%;margin:1%;text-align:center

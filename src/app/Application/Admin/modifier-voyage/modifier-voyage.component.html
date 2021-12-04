@@ -1,6 +1,6 @@
 <app-menu-admin></app-menu-admin>
 <form [formGroup]="modifForm" (ngSubmit)="onSubmit()">
-    <input type="number" [value]="voy[0].id" disabled>
+    <input type="number" formControlName="id">
     <input type="text" formControlName="pays">
     <input type="text" formControlName="lib">
     <input type="number" formControlName="prix">
@@ -8,7 +8,7 @@
     <input type="text" formControlName="date_dep" >
     <input type="text" formControlName="date_arr">
     <input type="submit" value="Modifier">
-    <div *ngFor="let v of voy[0].photo; let i=index">
+    <div *ngFor="let v of voy.photo; let i=index">
         <input type="text" name="img" [value]="v">
     </div>
     <br><br><br><br>
