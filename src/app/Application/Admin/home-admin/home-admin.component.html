@@ -1,5 +1,5 @@
 <app-menu-admin></app-menu-admin>
-<h1 style="text-align:center;color:#330867">Rechercher un voyage ?</h1>
+<h1 style="text-align:center;color:#330867;padding-top:1%"><i>Rechercher un voyage ?</i></h1>
 <div>
 <div class="col-md-12 align-self-center" style="text-align: center;">
 <div height="50%" style="background-color:rgba(177, 177, 177, 0.486);color:white; margin:'1%'; padding:'1%'">
@@ -9,16 +9,17 @@
     <input type="date" style="height:20%" formControlName="datedarr" [hidden]="!datec()"><br>
     <mat-slide-toggle color="accent" formControlName="paysc" >pays</mat-slide-toggle><br>
    
-    <!-- <div [hidden]="!paysc()">
-    <mat-form-field appearance="fill">
-        <mat-label>Pays</mat-label>
-        <mat-select>
-            <mat-option *ngFor="let p of pays" [value]="p" formControlName="pays" >
-                {{p}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-</div> -->
+    <div [hidden]="!paysc()">
+      <mat-form-field appearance="fill">
+          <mat-label>Pays</mat-label>
+          <mat-select  formControlName="pays">
+              <mat-option *ngFor="let p of lespays" [value]="p" >
+                  {{p}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+  </div>
+  <mat-slide-toggle color="accent" formControlName="tous" [hidden]="!tous()">tous</mat-slide-toggle><br>
     <button type="submit" class="btn btn-info" style="margin:2%" type="submit"> Rechercher</button>
 </form>
 </div>

@@ -1,22 +1,46 @@
 <app-menu-admin></app-menu-admin>
+<div>
 <form [formGroup]="ajoutForm" (ngSubmit)="onSubmit()">
-    <input type="text" formControlName="pays" style="position:relative;z-index:1;">
-    <input type="text" formControlName="lib">
-    <input type="number" formControlName="prix">
-    <input type="number" formControlName="promo">
-    <input type="date" formControlName="date_dep">
-    <input type="date" formControlName="date_arr">
-    <input type="textarea" formControlName="detail">
-    <input type="submit" value="Ajouter le Voyage">
-    <h5>Ajouter des photos</h5>
-<div formArrayName="photo">
-<div *ngFor="let p of photo.controls; let i=index">
-Choix {{i+1}} <input type="text" [formControlName]="i"/>
-</div>
-</div>
-<button type="button"(click)="onAjouterImages()">
-Ajouter image
-</button>
+<mat-form-field appearance="fill">
+    <mat-label>Pays</mat-label>
+    <input matInput formControlName="pays">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Libelle</mat-label>
+    <input matInput formControlName="lib">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Prix</mat-label>
+    <input matInput formControlName="prix">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Promo</mat-label>
+    <input matInput formControlName="promo">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Date Depart</mat-label>
+    <input matInput type="date" formControlName="date_dep">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Date Arrivee</mat-label>
+    <input matInput type="date" formControlName="date_arr">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Details</mat-label>
+    <textarea matInput formControlName="detail"></textarea>
+  </mat-form-field>
+    <button class="btn btn-info" type="button"(click)="onAjouterImages()">Cliquer pour ajouter une image</button>
+      <div formArrayName="photo">
+        <div *ngFor="let p of photo.controls; let i=index">
+            <mat-form-field appearance="fill">
+                <mat-label>Choix {{i+1}} </mat-label>
+                <input matInput [formControlName]="i">
+              </mat-form-field>
+            </div>
+        </div>
+
+<button class="btn btn-success" type="submit">Ajouter le Voyage</button>
 </form>
+</div>
 <br><br>
-<button [routerLink]="['/homeAdmin']">Retour</button>
+<button class="btn btn-warning" [routerLink]="['/homeAdmin']">Retour</button>

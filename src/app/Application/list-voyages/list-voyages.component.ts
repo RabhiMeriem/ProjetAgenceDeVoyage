@@ -20,25 +20,26 @@ export class ListVoyagesComponent implements OnInit {
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
   tabCom: Commentaire[] = [];
-  pays: string[] = [];
-  paysx: string[] = [];
+  lespays: string[] = [];
   type: string[] = ["Signaler un problème sur le site Web", "Donner une note à mon expérience sur la page web", "Donner mon avis sur le produit que j'ai acheté", "j'ai besoin d'aide", "J'ai une suggestion/idée", "Autre"];
   constructor(private s:MatSnackBar,private voyageService: VoyageService, private fb: FormBuilder, private CService: CommentaireService) { }
 
   ngOnInit(): void {
     this.voyageService.getVoyages().subscribe(data => this.ListeVoyages = data, error => { }, () => {
       for (var i = 0; i < this.ListeVoyages.length; i++) {
-        this.pays[i] = this.ListeVoyages[i].pays;
+        this.lespays[i] = this.ListeVoyages[i].pays;
       }
     });
+    this.voyageService.getVoyages().subscribe( data => this.ListeVoyages = data);
+
     //this.s();
-    console.log(this.pays);
     this.voyageForm = this.fb.group({
       datedep: [""],
       datedarr: [""],
-      pays: [''],
+      pays: [""],
       datec: [false],
-      paysc: [false]
+      paysc: [false],
+      tous:[true]
     });
     this.firstFormGroup = this.fb.group({
       firstCtrl: ['']
@@ -60,11 +61,16 @@ export class ListVoyagesComponent implements OnInit {
   datec(): boolean {
     return this.voyageForm.controls.datec.value
   }
+tous()
+{
+  return !this.voyageForm.controls.datec.value && !this.voyageForm.controls.paysc.value
+}
   onSubmit() {
     if (this.voyageForm.controls.paysc.value && this.voyageForm.controls.datec.value == false) {
       this.voyageService.VoyagesByPays(this.voyageForm.controls.pays.value).subscribe(data => this.ListeVoyages = data);
     }
     else if (this.voyageForm.controls.datec.value && this.voyageForm.controls.paysc.value == false) { this.voyageService.VoyagesByDate(this.voyageForm.controls.datedep.value, this.voyageForm.controls.datedarr.value).subscribe(data => this.ListeVoyages = data); }
+    else if(this.voyageForm.controls.tous.value && !this.voyageForm.controls.paysc.value && !this.voyageForm.controls.datec.value){    this.voyageService.getVoyages().subscribe( data => this.ListeVoyages = data);}
     else {
       this.voyageService.VoyagesByDatePays(this.voyageForm.controls.datedep.value, this.voyageForm.controls.datedarr.value, this.voyageForm.controls.pays.value).subscribe(data => this.ListeVoyages = data);
     }
@@ -95,6 +101,6 @@ export class ListVoyagesComponent implements OnInit {
 //   }
 // }}
 openSnackBar() {
-  this.s.open("Votre commentaire a été envoyé aux administrateurs",'Undo',{duration:5000});
+  this.s.open("Votre commentaire a été envoyé aux administrateurs",'ok',{duration:5000});
 }
 }

@@ -1,15 +1,18 @@
 @media only screen and (max-width: 1400px) {
   .example-button-container{position:relative;top:3%}
 }
+@media only screen and (max-width: 870px) {
+  p{color:black; font-size:20%}
+}
 .example-container {
     margin: 5px;
     top:50%;
     width:100%;
   }
   p{
-    color:#330867;font-size:500%;padding:1%;margin:1%;
+    color:#330867;font-size:500%;padding:1%;margin:1%;text-align:center
   }
-  h1{color:orange;margin: 2%;padding:2%;font-style: italic;font-family:URW Chancery L, cursive ;font-size:50px;}
+  h1{text-align:center;color:#330867;margin: 2%;padding:2%;font-style: italic;font-family:URW Chancery L, cursive ;font-size:50px;}
   mat-drawer-content {
     padding: 100px;
     display: flex;
