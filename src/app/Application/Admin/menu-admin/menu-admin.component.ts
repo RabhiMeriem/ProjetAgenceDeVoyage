@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommentaireService } from 'src/app/Services/commentaire.service';
 
 
 @Component({
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu-admin.component.css']
 })
 export class MenuAdminComponent implements OnInit {
-  constructor(){}
-  ngOnInit() {}
+  nbComm:number;
+  constructor(private commentaireService:CommentaireService){}
+  ngOnInit() {
+    this.nbComm = this.commentaireService.getNbCommentaires();
+  }
 }

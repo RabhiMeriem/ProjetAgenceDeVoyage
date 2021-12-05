@@ -1,27 +1,67 @@
 <app-menu-admin></app-menu-admin>
 <form [formGroup]="modifForm" (ngSubmit)="onSubmit()">
-    <input type="number" formControlName="id">
-    <input type="text" formControlName="pays">
-    <input type="text" formControlName="lib">
-    <input type="number" formControlName="prix">
-    <input type="number" formControlName="promo">
-    <input type="text" formControlName="date_dep" >
-    <input type="text" formControlName="date_arr">
-    <input type="submit" value="Modifier">
-    <div *ngFor="let v of voy.photo; let i=index">
-        <input type="text" name="img" [value]="v">
-    </div>
-    <br><br><br><br>
-    <div formArrayName="photo">
-        <div *ngFor="let p of photo.controls; let i=index">
-        <div *ngIf="i+1<=voy[0].photo.length">Modifier l'image num {{i+1}}:</div> 
-        <div *ngIf="i+1>voy[0].photo.length">Ajouter l'image num {{i+1}}:</div> 
-        <input type="text" [formControlName]="i"/>
+    <fieldset>
+        <legend>Formulaire de modification du voyage</legend>
+        <mat-form-field appearance="fill">
+            <mat-label>ID</mat-label>
+            <input matInput type="number" formControlName="id" [value]="voy.id">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Pays</mat-label>
+            <input matInput type="text" formControlName="pays">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Libellé</mat-label>
+            <input matInput type="text" formControlName="lib">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Prix</mat-label>
+            <input matInput type="number" formControlName="prix">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Promo</mat-label>
+            <input matInput type="number" formControlName="promo">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Date de départ</mat-label>
+            <input matInput type="text" formControlName="date_dep">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Date d'arrivée</mat-label>
+            <input matInput type="text" formControlName="date_arr">
+        </mat-form-field>
+        <br>
+        <div *ngFor="let v of voy.photo; let i=index" style="display:inline-block;margin:1%" formArrayName="photo">
+            <mat-form-field>
+                <mat-label>Photo N°{{i+1}}</mat-label>
+                <input matInput type="text" name="img" [value]="v" [formControlName]="i">
+                <button (click)="supprimerPhoto(i)">supprimer</button>
+            </mat-form-field>
         </div>
-        </div><br><br><br><br>
-        <button type="button"(click)="onAjouterImages()">
-        Modifier les images
-        </button>
+        <br><br>
+    <input type="submit" value="Modifier" class="btn btn-success c2">
+
+    </fieldset>
+</form>
+<form [formGroup]="photosForm" (ngSubmit)="onAjouter()">
+<div formArrayName="ph">
+    <div *ngFor="let p of ph.controls; let i=index">
+        <div>Image num {{i+1}}:</div>
+        <input type="text" [formControlName]="i" />
+        <button (click)="delInput(i)">supprimer</button>
+    </div> 
+    
+<br><br>
+<button type="button" (click)="onAjouterImages()" class="btn btn-info">
+    Ajouter des images
+</button>
+</div>
+<input type="submit" class="btn btn-primary" value="Ajouter au voyage">
 </form>
 <br><br>
 <button [routerLink]="['/homeAdmin']">Retour</button>

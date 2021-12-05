@@ -27,9 +27,15 @@ export class ListVoyagesComponent implements OnInit {
   ngOnInit(): void {
     this.voyageService.getVoyages().subscribe(data => this.ListeVoyages = data, error => { }, () => {
       for (var i = 0; i < this.ListeVoyages.length; i++) {
-        this.lespays[i] = this.ListeVoyages[i].pays;
+        this.lespays.push(this.ListeVoyages[i].pays);
+    }
+    for (var i = 0; i < this.lespays.length; i++) {
+      for(var j=i+1;j< this.lespays.length;j++){
+        if(this.lespays[j]==this.lespays[i]) 
+        this.lespays.splice(j-1,1);
       }
-    });
+  }
+  });
     this.voyageService.getVoyages().subscribe( data => this.ListeVoyages = data);
     //this.s();
     this.voyageForm = this.fb.group({
