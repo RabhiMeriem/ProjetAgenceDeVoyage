@@ -1,4 +1,5 @@
-<h1></h1>
+<html>
+<h1>Les commentaires</h1>
 <table class="table table-striped container">
     <thead class="thead thead-dark">
       <tr>
@@ -15,7 +16,9 @@
         <td>{{c.adresse}}</td>
         <td>{{c.type}}</td>
         <td>{{c.com}}</td>
-        <td><button (click)="onSupprimer(c.id)">Supprimer</button>
+        <td><button class="btn btn-dark" (click)="onSupprimer(c.id)">Supprimer</button>
       </tr>
     </tbody>
   </table>
+  <button class="btn btn-dark" [routerLink]="['/homeAdmin']">Retour</button>
+</html>

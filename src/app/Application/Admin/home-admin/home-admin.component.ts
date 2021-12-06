@@ -22,9 +22,16 @@ export class HomeAdminComponent implements OnInit {
     
     this.voyageService.getVoyages().subscribe(data => this.listeVoyage = data, error => { }, () => {
       for (var i = 0; i < this.listeVoyage.length; i++) {
-        this.lespays[i] = this.listeVoyage[i].pays;
+        this.lespays.push(this.listeVoyage[i].pays);
+    }
+    for (var i = 0; i < this.lespays.length; i++) {
+      for(var j=i+1;j< this.lespays.length;j++){
+        // this.lespays.filter(p => p[j]!=p[i]);
+        if(this.lespays[j]==this.lespays[i]) 
+        this.lespays.splice(j-1,1);
       }
-    });
+  }
+  });
     this.voyageService.getVoyages().subscribe( data => this.listeVoyage = data);
 
     this.voyageForm = this.fb.group({

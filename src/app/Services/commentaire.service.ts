@@ -13,14 +13,9 @@ export class CommentaireService {
   getCommentaires():Observable<Commentaire[]> {
     return this.http.get<Commentaire[]>(URL);
     }
-    getNbCommentaires(){
-      let x:number;
-      this.getCommentaires().subscribe(data=>{return x=data[data.length].id});
-      return x;
-    }
     supprimerCommentaire(id:number)
     {
-      return this.http.delete(URL+"/"+ id);
+        return this.http.delete(URL+"/"+ id);
     }
   addCommentaire(commentaire: Commentaire) {
     return this.http.post<Commentaire>(URL,commentaire);

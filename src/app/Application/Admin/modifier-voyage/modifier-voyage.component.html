@@ -1,7 +1,92 @@
-<app-menu-admin></app-menu-admin>
+<!-- <app-menu-admin></app-menu-admin>
 <form [formGroup]="modifForm" (ngSubmit)="onSubmit()">
-    <fieldset>
-        <legend>Formulaire de modification du voyage</legend>
+    <input type="number" [value]="voy.id">
+    <input type="text" formControlName="pays">
+    <input type="text" formControlName="lib">
+    <input type="number" formControlName="prix">
+    <input type="number" formControlName="promo">
+    <input type="text" formControlName="date_dep" >
+    <input type="text" formControlName="date_arr">
+    <div *ngFor="let v of voy.photo; let i=index">
+        image {{i+1}}:<br><input type="text" name="img" [value]="v" >
+    </div>
+    <input type="submit" value="Modifier le voyage">
+    <br><br><br><br>
+    <form [formGroup]="photosForm" (ngSubmit)="onAjouter()"></form>
+    <div formArrayName="photos">
+        <div *ngFor="let p of photos.controls; let i=index">
+        <div>Ajouter l'image num {{i+1}}:</div> 
+        <input type="text" [formControlName]="i"/>
+        </div>
+        </div>
+        <br><br><br><br>
+         <button type="button"(click)="onAjouterImages()">
+        Modifier les images
+        </button> 
+</form>
+<br><br>
+<button [routerLink]="['/homeAdmin']">Retour</button>-->
+
+<!-- <app-menu-admin></app-menu-admin>
+<div>
+<form [formGroup]="modifForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+    <legend>Formulaire de modification d'un voyage</legend>
+    <mat-form-field appearance="fill">
+        <mat-label>Id</mat-label>
+        <input matInput formControlName="id">
+      </mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Pays</mat-label>
+    <input matInput formControlName="pays">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Libelle</mat-label>
+    <input matInput formControlName="lib">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Prix</mat-label>
+    <input matInput formControlName="prix">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Promo</mat-label>
+    <input matInput formControlName="promo">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Date Depart</mat-label>
+    <input matInput type="date" formControlName="date_dep">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Date Arrivee</mat-label>
+    <input matInput type="date" formControlName="date_arr">
+  </mat-form-field>
+  <mat-form-field class="c1" appearance="fill">
+    <mat-label>Details</mat-label>
+    <textarea matInput formControlName="detail"></textarea>
+  </mat-form-field><br>
+    <button class="btn btn-secondary" type="button"(click)="onAjouterImages()">Cliquer pour ajouter une image</button>
+      <div formArrayName="photo">
+        <div *ngFor="let p of photos.controls; let i=index">
+            <mat-form-field appearance="fill">
+                <mat-label>Choix {{i+1}} </mat-label>
+                <input matInput [formControlName]="i">
+              </mat-form-field>
+            </div>
+        </div>
+
+<button class="btn btn-info" type="submit" [routerLink]="['/homeAdmin']">Modifier le Voyage</button>
+</fieldset>
+</form>
+
+<br><br>
+<button class="btn btn-dark" [routerLink]="['/homeAdmin']">Retour</button>
+</div>  -->
+  
+<app-menu-admin></app-menu-admin>
+<form class="c">
+  <fieldset>
+    <legend>Formulaire de modification du voyage</legend>
+<form [formGroup]="modifForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill">
             <mat-label>ID</mat-label>
             <input matInput type="number" formControlName="id" [value]="voy.id">
@@ -44,24 +129,23 @@
             </mat-form-field>
         </div>
         <br><br>
-    <input type="submit" value="Modifier" class="btn btn-success c2">
-
-    </fieldset>
+    <button type="submit"class="btn btn-primary" style="position:absolute;top:105%;left:38%">Modifier le voyage</button>
 </form>
 <form [formGroup]="photosForm" (ngSubmit)="onAjouter()">
-<div formArrayName="ph">
-    <div *ngFor="let p of ph.controls; let i=index">
+<div formArrayName="photos">
+    <div *ngFor="let p of photos.controls; let i=index">
         <div>Image num {{i+1}}:</div>
         <input type="text" [formControlName]="i" />
         <button (click)="delInput(i)">supprimer</button>
     </div> 
-    
 <br><br>
-<button type="button" (click)="onAjouterImages()" class="btn btn-info">
+<button type="button" (click)="onAjouterImages();confirmer()" class="btn btn-secondary">
     Ajouter des images
 </button>
 </div>
-<input type="submit" class="btn btn-primary" value="Ajouter au voyage">
+<button type="submit" class="btn btn-info" [hidden]="!conf">Ajouter au voyage</button>
+</form>
+</fieldset>
 </form>
 <br><br>
-<button [routerLink]="['/homeAdmin']">Retour</button>
+<button class="btn btn-dark"[routerLink]="['/homeAdmin']">Retour</button>

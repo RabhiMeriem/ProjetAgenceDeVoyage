@@ -12,6 +12,7 @@
     <mat-label>Libelle</mat-label>
     <input matInput formControlName="lib">
   </mat-form-field>
+  <div [hidden]="!isValidLib()" class="alert alert-danger">Premiere lettre de chaque mot doit etre majuscule</div>
   <mat-form-field appearance="fill">
     <mat-label>Prix</mat-label>
     <input matInput formControlName="prix">

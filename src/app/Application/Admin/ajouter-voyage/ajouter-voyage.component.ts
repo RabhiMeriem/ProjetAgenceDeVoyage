@@ -32,6 +32,10 @@ export class AjouterVoyageComponent implements OnInit {
   {
     return this.ajoutForm.controls.pays.errors?.pattern && this.ajoutForm.controls.pays.dirty;
   }
+  isValidLib()
+  {
+    return this.ajoutForm.controls.lib.errors?.pattern && this.ajoutForm.controls.lib.dirty;
+  }
   public get photo()
 {
 return this.ajoutForm.get('photo') as FormArray;
@@ -45,6 +49,7 @@ this.photo.push(this.fb.control(''));
   {
     this.voyageService.addVoyage(this.ajoutForm.value).subscribe();
     this.openSnackBar();
+    this.ajoutForm.reset();
   }
   openSnackBar() {
     this.s.open("Voyage ajouté",'ok',{duration:5000});

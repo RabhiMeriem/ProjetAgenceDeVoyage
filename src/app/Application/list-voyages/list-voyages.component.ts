@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
 import { Commentaire } from 'src/app/Classes/commentaire';
 import { Voyage } from 'src/app/Classes/voyage';
 import { CommentaireService } from 'src/app/Services/commentaire.service';
@@ -21,21 +20,23 @@ export class ListVoyagesComponent implements OnInit {
   fourthFormGroup: FormGroup;
   tabCom: Commentaire[] = [];
   lespays: string[] = [];
+  testPays:string[] =this.lespays;
   type: string[] = ["Signaler un problème sur le site Web", "Donner une note à mon expérience sur la page web", "Donner mon avis sur le produit que j'ai acheté", "j'ai besoin d'aide", "J'ai une suggestion/idée", "Autre"];
   constructor(private s:MatSnackBar,private voyageService: VoyageService, private fb: FormBuilder, private CService: CommentaireService) { }
 
   ngOnInit(): void {
     this.voyageService.getVoyages().subscribe(data => this.ListeVoyages = data, error => { }, () => {
       for (var i = 0; i < this.ListeVoyages.length; i++) {
-        this.lespays.push(this.ListeVoyages[i].pays);
-    }
-    for (var i = 0; i < this.lespays.length; i++) {
-      for(var j=i+1;j< this.lespays.length;j++){
-        if(this.lespays[j]==this.lespays[i]) 
-        this.lespays.splice(j-1,1);
+          this.lespays.push(this.ListeVoyages[i].pays);
       }
-  }
-  });
+      for (var i = 0; i < this.lespays.length; i++) {
+        for(var j=i+1;j< this.lespays.length;j++){
+          // this.lespays.filter(p => p[j]!=p[i]);
+          if(this.lespays[j]==this.lespays[i]) 
+          this.lespays.splice(j-1,1);
+        }
+    }
+    });
     this.voyageService.getVoyages().subscribe( data => this.ListeVoyages = data);
     //this.s();
     this.voyageForm = this.fb.group({
