@@ -31,14 +31,12 @@ export class ListVoyagesComponent implements OnInit {
       }
       for (var i = 0; i < this.lespays.length; i++) {
         for(var j=i+1;j< this.lespays.length;j++){
-          // this.lespays.filter(p => p[j]!=p[i]);
           if(this.lespays[j]==this.lespays[i]) 
           this.lespays.splice(j-1,1);
         }
     }
     });
     this.voyageService.getVoyages().subscribe( data => this.ListeVoyages = data);
-    //this.s();
     this.voyageForm = this.fb.group({
       datedep: [""],
       datedarr: [""],
@@ -92,20 +90,7 @@ tous()
     }
     else return v.prix;
   }
-// s() {
-//   for(var i=0;i<this.pays.length-1;i++){
-//   var x:string=this.pays[i];
-//   for(var j=i+1;j<this.pays.length;j++)
-//   {
-//     if(x==this.pays[j])
-//     {
-//       for(var y=j;y<this.pays.length;y++)
-//       {
-//         this.pays[y]=this.pays[y+1];
-//       }
-//     }
-//   }
-// }}
+
 openSnackBar() {
   this.s.open("Votre commentaire a été envoyé aux administrateurs",'ok',{duration:5000});
 }

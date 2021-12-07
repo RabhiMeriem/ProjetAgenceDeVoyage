@@ -10,7 +10,8 @@ form{
   left:20%;
   border: 1px solid Black;
 }
-.c1{position:relative;left:2%}
+mat-form-field {margin:1%}
+.c1{width:100%}
 input{width:100%;text-align:center;}
 input.ng-invalid {border-bottom:2px solid red;border-width: 80%;}
 input.ng-valid {border-bottom:2px solid green;border-width: 80%;}

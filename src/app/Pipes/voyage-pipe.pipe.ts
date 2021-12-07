@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class VoyagePipePipe implements PipeTransform {
 
-  transform(nb:number): string {
-    return "-"+nb+"%";
+  transform(nb: number): string {
+    return "-" + nb + "%";
   }
 
 }

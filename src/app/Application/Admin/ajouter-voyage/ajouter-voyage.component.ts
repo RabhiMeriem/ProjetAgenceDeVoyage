@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Voyage } from 'src/app/Classes/voyage';
 import { VoyageService } from 'src/app/Services/voyage.service';
 
@@ -54,4 +55,5 @@ this.photo.push(this.fb.control(''));
   openSnackBar() {
     this.s.open("Voyage ajouté",'ok',{duration:5000});
   }
+  delInput(index: number): void { const arrayControl = <FormArray>this.ajoutForm.controls['photo']; arrayControl.removeAt(index); }
 }

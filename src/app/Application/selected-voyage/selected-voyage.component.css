@@ -1,19 +1,39 @@
 .promo {
-    animation-name: myAnimation;
-    animation-duration:2s;
-    animation-iteration-count:infinite;
-    border-radius: 25px;
-    padding:1%;
-    margin: 1%;
-    position: absolute;
-    top:15%;
-    right: 20%;
-    font-size:150%;
+  animation-name: myAnimation;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  border-radius: 25px;
+  padding: 1%;
+  margin: 1%;
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  font-size: 150%;
 }
-h1,h2{text-align: center;color:#330867;margin: 2%;padding:2%;font-style: italic;font-family:URW Chancery L, cursive ;font-size:40px;}
+
+h1,
+h2 {
+  text-align: center;
+  color: #330867;
+  margin: 2%;
+  padding: 2%;
+  font-style: italic;
+  font-family: URW Chancery L, cursive;
+  font-size: 40px;
+}
 
 @keyframes myAnimation {
-    0%{background-color: white;color: deepskyblue;}
-    100%{background-color:deepskyblue;color:white;}
+  0% {
+    background-color: white;
+    color: deepskyblue;
+  }
+
+  100% {
+    background-color: deepskyblue;
+    color: white;
+  }
 }
-img{ height:60%}
+
+img {
+  height: 60%
+}

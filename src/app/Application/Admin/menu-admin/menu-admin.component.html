@@ -12,14 +12,15 @@
       </div>
   </div>
   <div class="collapse navbar-collapse principal-navbar animate__animated animate__backInLeft" id="navbarCollapse">
-        <ul class="navbar navbar-nav ms-auto mb-2 mb-md-0">      
+        <ul class="navbar navbar-nav ms-auto mb-2 mb-md-0">
+          <li class="nav-item m-2"> <button class="btn btn-light" mat-stroked-button color="primary"[routerLink]="['/homeAdmin']">Home Admin</button></li>      
           <li class="nav-item m-2"> <button class="btn btn-light" mat-stroked-button color="primary"[routerLink]="['/ajouterVoyage']">Ajouter un Voyage</button></li>
-          <li class="nav-item m-2"><button class="btn btn-light" mat-stroked-button color="primary" [routerLink]="['/commentaireAdmin']">Consulter les commentaires</button></li>
+          <li class="nav-item m-2"><button class="btn btn-light" mat-stroked-button color="primary" [routerLink]="['/commentaireAdmin']" matBadge="{{nbComm}}" matBadgeColor="primary">Consulter les commentaires</button></li>
           <li class="nav-item m-2"><img style="border-radius: 13px;margin:2%" src="https://e7.pngegg.com/pngimages/9/763/png-clipart-computer-icons-login-user-system-administrator-admin-desktop-wallpaper-megaphone-thumbnail.png" width="50" height="50" padding="2%"  alt="AdminBestTunisiaTravel"class="img-fluid me-2"></li>
     <button class="btn btn-light "mat-stroked-button color="primary" [routerLink]="['/listeVoyages']">Se deconnecter</button>
 
   </ul>
-  </div> <!-- navbar-collapse.// -->
-</div><!-- container //  -->
+  </div>
+</div>
 </nav>
  

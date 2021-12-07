@@ -31,6 +31,7 @@ import { AjouterVoyageComponent } from './Application/Admin/ajouter-voyage/ajout
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HomeAdminComponent } from './Application/Admin/home-admin/home-admin.component';
 import { CommentaireAdminComponent } from './Application/Admin/commentaire-admin/commentaire-admin.component';
+import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +66,7 @@ import { CommentaireAdminComponent } from './Application/Admin/commentaire-admin
     MatAutocompleteModule,
     MatIconModule,
     MdbCarouselModule,
+    MatBadgeModule,
     MatSnackBarModule,
     HttpClientModule
   ],

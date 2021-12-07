@@ -13,6 +13,7 @@
     <input matInput formControlName="lib">
   </mat-form-field>
   <div [hidden]="!isValidLib()" class="alert alert-danger">Premiere lettre de chaque mot doit etre majuscule</div>
+  <br>
   <mat-form-field appearance="fill">
     <mat-label>Prix</mat-label>
     <input matInput formControlName="prix">
@@ -21,6 +22,7 @@
     <mat-label>Promo</mat-label>
     <input matInput formControlName="promo">
   </mat-form-field>
+  <br>
   <mat-form-field appearance="fill">
     <mat-label>Date Depart</mat-label>
     <input matInput type="date" formControlName="date_dep">
@@ -29,21 +31,23 @@
     <mat-label>Date Arrivee</mat-label>
     <input matInput type="date" formControlName="date_arr">
   </mat-form-field>
+  <br>
   <mat-form-field class="c1" appearance="fill">
     <mat-label>Details</mat-label>
     <textarea matInput formControlName="detail"></textarea>
   </mat-form-field><br>
-    <button class="btn btn-secondary" type="button"(click)="onAjouterImages()">Cliquer pour ajouter une image</button>
+    <button class="btn btn-dark" type="button"(click)="onAjouterImages()">Cliquer pour ajouter une image</button>
       <div formArrayName="photo">
         <div *ngFor="let p of photo.controls; let i=index">
             <mat-form-field appearance="fill">
                 <mat-label>Choix {{i+1}} </mat-label>
                 <input matInput [formControlName]="i">
+                <button class="btn btn-secondary" (click)="delInput(i)" style="position:absolute;left:110%;margin: 1%;top:-10%;">supprimer</button>
               </mat-form-field>
             </div>
         </div>
 
-<button class="btn btn-info" type="submit" [disabled]="ajoutForm.invalid">Ajouter le Voyage</button>
+<button class="btn btn-info" style="margin: 2%;" type="submit" [disabled]="ajoutForm.invalid">Ajouter le Voyage</button>
 </fieldset>
 </form>
 

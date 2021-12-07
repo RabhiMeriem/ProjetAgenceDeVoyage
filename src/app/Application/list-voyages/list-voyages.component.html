@@ -3,126 +3,128 @@
 <!-- Rechercher-->
 <h1>Trouvez votre destination</h1>
 <div class="recherche">
-<div class="col-md-12 align-self-center" style="position: absolute;bottom: 9%;text-align: center;">
-<div height="50%" style="background-color:rgba(177, 177, 177, 0.486);color:white">
-<form  [formGroup]="voyageForm" (ngSubmit)="onSubmit()" style="position:relative;font-size: 150%;">
-    <mat-slide-toggle color="accent" formControlName="datec">Date</mat-slide-toggle><br>
-    <input type="date" style="height:20%;opacity: 1;" formControlName="datedep" [hidden]="!datec()">
-    <input type="date" style="height:20%" formControlName="datedarr" [hidden]="!datec()"><br>
-    <mat-slide-toggle color="accent" formControlName="paysc" >pays</mat-slide-toggle><br>
-   
-    <div [hidden]="!paysc()">
-        <mat-form-field appearance="fill">
-            <mat-label>Pays</mat-label>
-            <mat-select  formControlName="pays">
-                <mat-option *ngFor="let p of lespays" [value]="p" >
-                    {{p}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+    <div class="col-md-12 align-self-center" style="position: absolute;bottom: 15%;text-align: center;">
+        <div height="50%" style="background-color:rgba(177, 177, 177, 0.486);color:white">
+            <form [formGroup]="voyageForm" (ngSubmit)="onSubmit()" style="position:relative;font-size: 150%;">
+                <mat-slide-toggle color="accent" formControlName="datec">Date</mat-slide-toggle><br>
+                <input type="date" style="height:20%;opacity: 1;" formControlName="datedep" [hidden]="!datec()">
+                <input type="date" style="height:20%" formControlName="datedarr" [hidden]="!datec()"><br>
+                <mat-slide-toggle color="accent" formControlName="paysc">pays</mat-slide-toggle><br>
+
+                <div [hidden]="!paysc()">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Pays</mat-label>
+                        <mat-select formControlName="pays">
+                            <mat-option *ngFor="let p of lespays" [value]="p">
+                                {{p}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <mat-slide-toggle color="accent" formControlName="tous" [hidden]="!tous()">tous</mat-slide-toggle><br>
+                <input type="submit" value="Rechercher" class="btn btn-primary">
+            </form>
+        </div>
     </div>
-    <mat-slide-toggle color="accent" formControlName="tous" [hidden]="!tous()">tous</mat-slide-toggle><br>
-    <input type="submit" value="Rechercher" class="btn btn-primary">
-</form>
-</div>
-</div>
 </div>
 <br>
 <p>Nos meilleurs destinations </p>
 <p class="test">Réservez maintenant votre vol en temps réel</p>
-
 <div class="row" style="width:98%">
     <div class="col-sm-4" *ngFor="let v of ListeVoyages">
-      <div class="card">
+        <div class="card">
             <div class="card-body">
-                <img [src]="v.photo[0]" width="100%" >
+                <img [src]="v.photo[0]" width="100%">
             </div>
             <div class="container row card-title">
-            <h1 class="col-md"style="font-size: 30px;margin:1%;padding:1%;">{{v.lib|titlecase}}</h1><br>
-            <div class="example-button-container col-md-3">
-                <button *ngIf="v.promo!=0" mat-fab color="accent" aria-label="promo" style="font-size:120%">
-                  {{v.promo|voyagePipe}}
-                </button>
-              </div>
-        </div>
+                <h1 class="col-md" style="font-size: 30px;margin:1%;padding:1%;">{{v.lib|titlecase}}</h1><br>
+                <div class="example-button-container col-md-3">
+                    <button *ngIf="v.promo!=0" mat-fab color="accent" aria-label="promo" style="font-size:120%">
+                        {{v.promo|voyagePipe}}
+                    </button>
+                </div>
+            </div>
             <div class="card-footer" height="70%">
                 <h5 style="font-size:25px;float:left"><i class="fas fa-coins"></i>{{promo(v)}}</h5>
-        <button class="btn btn-warning" style="position:absolute;left:80%" [routerLink]="['/listeVoyages',v.id]">Details</button>
-      </div>
+                <button class="btn btn-warning" style="position:absolute;left:80%"
+                    [routerLink]="['/listeVoyages',v.id]">Details</button>
+            </div>
+        </div>
     </div>
-    </div>
-<mat-drawer-container class="example-container">
-    <mat-drawer #drawer mode="push" style="width:70%">
-        <mat-stepper orientation="vertical" linear="true" #stepper>
-            <mat-step [stepControl]="firstFormGroup">
-                <form [formGroup]="firstFormGroup">
-                    <ng-template matStepLabel>Votre nom</ng-template>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Nom</mat-label>
-                        <input matInput placeholder="Donnez votre nom et prénom" formControlName="firstCtrl">
-                    </mat-form-field>
-                    <div>
-                        <button mat-button matStepperNext>Next</button>
-                    </div>
-                </form>
-            </mat-step>
-            <mat-step [stepControl]="secondFormGroup">
-                <form [formGroup]="secondFormGroup">
-                    <ng-template matStepLabel>Adresse E-mail</ng-template>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Addresse</mat-label>
-                        <input matInput formControlName="secondCtrl" placeholder="Foulen@gmail.com">
-                    </mat-form-field>
-                    <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                    </div>
-                </form>
-            </mat-step>
-            <mat-step [stepControl]="thirdFormGroup">
-                <form [formGroup]="thirdFormGroup">
-                    <ng-template matStepLabel>Type de problèmes ou Renseignements</ng-template>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Problème ou Renseignement</mat-label>
-                        <mat-select>
-                            <mat-option *ngFor="let t of type" [value]="t">
-                                {{t}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                    </div>
-                </form>
-            </mat-step>
-            <mat-step [stepControl]="fourthFormGroup">
-                <form [formGroup]="fourthFormGroup">
-                    <ng-template matStepLabel>Commentaire</ng-template>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Votre commentaire</mat-label>
-                        <textarea matInput formControlName="fourthCtrl"></textarea>
-                    </mat-form-field>
-                    <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
+    <mat-drawer-container class="example-container">
+        <mat-drawer #drawer mode="push" style="width:60%">
+            <mat-stepper orientation="vertical" linear="true" #stepper>
+                <mat-step [stepControl]="firstFormGroup">
+                    <form [formGroup]="firstFormGroup">
+                        <ng-template matStepLabel>Votre nom</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nom</mat-label>
+                            <input matInput placeholder="Donnez votre nom et prénom" formControlName="firstCtrl">
+                        </mat-form-field>
+                        <div>
+                            <button mat-button matStepperNext>Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel>Adresse E-mail</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Addresse</mat-label>
+                            <input matInput formControlName="secondCtrl" placeholder="Foulen@gmail.com">
+                        </mat-form-field>
+                        <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="thirdFormGroup">
+                    <form [formGroup]="thirdFormGroup">
+                        <ng-template matStepLabel>Type de problèmes ou Renseignements</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Problème ou Renseignement</mat-label>
+                            <mat-select formControlName="thirdCtrl">
+                                <mat-option *ngFor="let t of type" [value]="t">
+                                    {{t}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="fourthFormGroup">
+                    <form [formGroup]="fourthFormGroup">
+                        <ng-template matStepLabel>Commentaire</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Votre commentaire</mat-label>
+                            <textarea matInput formControlName="fourthCtrl"></textarea>
+                        </mat-form-field>
+                        <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button>
 
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+                    <p style="font-size:25px">You are now done.</p>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button (click)="stepper.reset()">Reset</button>
+                        <button mat-button (click)="ajoutCom()">Submit</button>
                     </div>
-                </form>
-            </mat-step>
-            <mat-step>
-                <ng-template matStepLabel>Done</ng-template>
-                <p style="font-size:25px">You are now done.</p>
-                <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
-                    <button mat-button (click)="ajoutCom()">Submit</button>
-                </div>
-            </mat-step>
-        </mat-stepper>
-    </mat-drawer>
-    <mat-drawer-content >
-      <span color="#330867" style="font-size: 200%;"> Avez vous un problème ? <button class="btn btn-primary"  (click)="drawer.toggle()">Signaler</button></span>
-    </mat-drawer-content>
-</mat-drawer-container>
-<app-footer style="max-width:100%;width:100%;position:absolute;top:290%"></app-footer>
+                </mat-step>
+            </mat-stepper>
+        </mat-drawer>
+        <mat-drawer-content>
+            <span color="#330867" style="font-size: 200%;"> Avez vous un problème ? <button class="btn btn-primary"
+                    (click)="drawer.toggle()">Signaler</button></span>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>
+<app-footer></app-footer>

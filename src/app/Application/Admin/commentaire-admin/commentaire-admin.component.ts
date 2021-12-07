@@ -8,14 +8,13 @@ import { CommentaireService } from 'src/app/Services/commentaire.service';
   styleUrls: ['./commentaire-admin.component.css']
 })
 export class CommentaireAdminComponent implements OnInit {
-listeCom:Commentaire[]=[];
+  listeCom: Commentaire[] = [];
   constructor(private commentaireService: CommentaireService) { }
 
   ngOnInit(): void {
-    this.commentaireService.getCommentaires().subscribe(data=>this.listeCom=data);
+    this.commentaireService.getCommentaires().subscribe(data => this.listeCom = data);
   }
-  onSupprimer(id)
-  {
-    this.commentaireService.supprimerCommentaire(id).subscribe(()=>this.listeCom = this.listeCom.filter(v=>v.id!=id))
+  onSupprimer(id) {
+    this.commentaireService.supprimerCommentaire(id).subscribe(() => this.listeCom = this.listeCom.filter(v => v.id != id))
   }
 }

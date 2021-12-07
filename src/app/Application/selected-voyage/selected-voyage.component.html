@@ -1,15 +1,15 @@
 <app-menu></app-menu>
-  <br>
-  <h1>{{Voyage.pays}}, {{Voyage.lib}}</h1>
-  <h3 style="font-size:150%;color:deepskyblue">Periode :<br>
-    du: {{Voyage.date_dep| date :'dd-MM-YYYY'}} au: {{Voyage.date_arr| date :'dd-MM-YYYY'}}<br>
-  </h3>
-  <h2 color="gray">prix: {{promo()}}</h2>
-  <span class="promo"  *ngIf="Voyage.promo!=0">En promotion: {{Voyage.promo|voyagePipe}}</span>
-  <div class="container">
+<br>
+<h1>{{Voyage.pays}}, {{Voyage.lib}}</h1>
+<h3 style="font-size:150%;color:deepskyblue">Periode :<br>
+  du: {{Voyage.date_dep| date :'dd-MM-YYYY'}} au: {{Voyage.date_arr| date :'dd-MM-YYYY'}}<br>
+</h3>
+<h2 color="gray">prix: {{promo()}}</h2>
+<span class="promo" *ngIf="Voyage.promo!=0">En promotion: {{Voyage.promo|voyagePipe}}</span>
+<div class="container">
   <mdb-carousel [controls]="true" [indicators]="true">
     <mdb-carousel-item *ngFor="let pho of Voyage.photo">
-      <img [src]="pho" class="d-block w-100"/>
+      <img [src]="pho" class="d-block w-100" />
     </mdb-carousel-item>
   </mdb-carousel>
 </div>
