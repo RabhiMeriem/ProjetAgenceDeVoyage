@@ -5,8 +5,8 @@
         <mat-label>Mot de passe</mat-label>
         <input type="password" matInput formControlName="psw">
     </mat-form-field><br>
-    <button type="submit" matdialog-button> Connecter</button>
-    <button matdialog-button mat-dialog-close> close</button>
+    <button type="submit" matdialog-button class="btn btn-primary" style="margin:1%"> Connecter</button>
+    <button matdialog-button mat-dialog-close  class="btn btn-secondary"> close</button>
     </form>
     <div *ngIf="msg" class="alert alert-danger">Mot de passe incorrect</div>
 </div>

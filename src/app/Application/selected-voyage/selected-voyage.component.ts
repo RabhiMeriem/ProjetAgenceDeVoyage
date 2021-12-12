@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Voyage } from 'src/app/Classes/voyage';
 import { VoyageService } from 'src/app/Services/voyage.service';
-
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 @Component({
   selector: 'app-selected-voyage',
   templateUrl: './selected-voyage.component.html',

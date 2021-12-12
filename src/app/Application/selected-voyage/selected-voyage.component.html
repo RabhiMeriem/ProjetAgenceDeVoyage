@@ -4,7 +4,7 @@
 <h3 style="font-size:150%;color:deepskyblue">Periode :<br>
   du: {{Voyage.date_dep| date :'dd-MM-YYYY'}} au: {{Voyage.date_arr| date :'dd-MM-YYYY'}}<br>
 </h3>
-<h2 color="gray">prix: {{promo()}}</h2>
+<h2 color="gray">prix: {{promo()|currency:'TND':'code':'3.3-3':'fr'}}</h2>
 <span class="promo" *ngIf="Voyage.promo!=0">En promotion: {{Voyage.promo|voyagePipe}}</span>
 <div class="container">
   <mdb-carousel [controls]="true" [indicators]="true">
