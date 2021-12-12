@@ -18,10 +18,10 @@ export class VoyageService {
     return this.http.get<Voyage[]>(URL + "?pays=" + pays);
   }
   VoyagesByDate(Dep: string, Arr: string): Observable<Voyage[]> {
-    return this.http.get<Voyage[]>(URL + "?date_dep=" + Dep + "&date_arr=" + Arr);
+    return this.http.get<Voyage[]>(URL + "?date_dep_gte=" + Dep + "&date_arr_lte=" + Arr);
   }
   VoyagesByDatePays(Dep: string, Arr: string, pays: string): Observable<Voyage[]> {
-    return this.http.get<Voyage[]>(URL + "?date_dep=" + Dep + "&date_arr=" + Arr + "&pays=" + pays);
+    return this.http.get<Voyage[]>(URL + "?date_dep_gte=" + Dep + "&date_arr_lte=" + Arr + "&pays=" + pays);
   }
   addVoyage(v: Voyage): Observable<Voyage> {
     return this.http.post<Voyage>(URL, v);
